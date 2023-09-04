@@ -24,7 +24,7 @@ def get_birthdays_per_week(users):
     #if user calls function on Friday result will be {'Friday': [], 'Monday': [], 'Tuesday': [], 'Wednesday': [], 'Thursday': []}
     for i in range(0,7):
         day_of_week = (users_date.weekday() + i) % 7
-        if day_of_week == 5 or day_of_week == 6:
+        if day_of_week in (5, 6):
             day_of_week = 0
         result_dict.setdefault(days_of_week.get(day_of_week), [])
 
@@ -47,7 +47,7 @@ def get_birthdays_per_week(users):
         #it handles this_birth_day
         if not bool_this_birth_day:
             day_of_week = days_of_week.get(this_birth_day.weekday())
-            if day_of_week == "Saturday" or day_of_week == "Sunday":
+            if day_of_week in ("Saturday", "Sunday"):
                 day_of_week = "Monday"
             for key, value in result_dict.items():
                 if key == day_of_week:
@@ -57,7 +57,7 @@ def get_birthdays_per_week(users):
         #it handles next_birth_day
         if  not bool_next_birth_day:
             day_of_week = days_of_week.get(next_birth_day.weekday())
-            if day_of_week == "Saturday" or day_of_week == "Sunday":
+            if day_of_week in ("Saturday", "Sunday"):
                 day_of_week = "Monday"
             for key, value in result_dict.items():
                 if key == day_of_week:
